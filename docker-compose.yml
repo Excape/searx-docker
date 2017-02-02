@@ -9,10 +9,14 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - cert-volume:/etc/nginx/certs:rw
+      - /etc/nginx/vhost.d
+      - /usr/share/nginx/html
   
   letsencrypt-proxy:
     image: jrcs/letsencrypt-nginx-proxy-companion
     container_name: letsencrypt-proxy
+    volumes_from:
+      - nginx-proxy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - cert-volume:/etc/nginx/certs:rw
