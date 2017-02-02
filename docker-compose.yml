@@ -8,18 +8,20 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./nginx/ssl:/etc/nginx/certs:rw
+      - cert-volume:/etc/nginx/certs:rw
   
-  # letsencrypt-proxy:
-  #   image: jrcs/letsencrypt-nginx-proxy-companion
-  #   container_name: letsencrypt-proxy
-    
+  letsencrypt-proxy:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    container_name: letsencrypt-proxy
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - cert-volume:/etc/nginx/certs:rw
 
   searx:
     image: wonderfall/searx:latest
     container_name: searx
     environment:
-      - VIRTUAL_HOST=localhost
+      - VIRTUAL_HOST=searx.cblog.ch
 
-#volumes:
-    
+volumes:
+    cert-volume
