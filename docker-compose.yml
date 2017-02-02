@@ -1,0 +1,25 @@
+version: '2'
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./nginx/ssl:/etc/nginx/certs:rw
+  
+  # letsencrypt-proxy:
+  #   image: jrcs/letsencrypt-nginx-proxy-companion
+  #   container_name: letsencrypt-proxy
+    
+
+  searx:
+    image: wonderfall/searx:latest
+    container_name: searx
+    environment:
+      - VIRTUAL_HOST=localhost
+
+#volumes:
+    
