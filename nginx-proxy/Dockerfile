@@ -1,3 +1,3 @@
 FROM jwilder/nginx-proxy:latest
 
-COPY vhosts/ /etc/nginx/conf.d/
+COPY configs/ /etc/nginx/conf.d/
