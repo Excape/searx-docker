@@ -1,5 +1,5 @@
 [Unit]
-Description=Renew examiburs let's encrypt certificates with dehydrated
+Description=Renew searx' let's encrypt certificates with dehydrated
 Requires=searx.service
 
 [Service]

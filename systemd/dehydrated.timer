@@ -1,9 +1,9 @@
 [Unit]
-Description=Renew examiburs let's encrypt certificates with dehydrated
+Description=Renew searx' let's encrypt certificate with dehydrated
 
 [Timer]
 OnCalendar=daily
 Persistent=true     
 
 [Install]
-wantedBy=timers.target
+WantedBy=timers.target

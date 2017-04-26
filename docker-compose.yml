@@ -13,9 +13,9 @@ services:
     links:
       - searx
 
-searx:
-  image: wonderfall/searx:latest
-  restart: always
+  searx:
+    image: wonderfall/searx:latest
+    restart: always
 
 volumes:
   nginx_dehydrated:
