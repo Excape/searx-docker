@@ -1,0 +1,7 @@
+[Unit]
+Description=Renew examiburs let's encrypt certificates with dehydrated
+Requires=searx.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/docker-compose -f /var/searx-docker/docker-compose.yml exec nginx dehydrated --cron

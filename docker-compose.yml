@@ -1,34 +1,21 @@
 version: '2'
 services:
-  nginx-proxy:
-    build: ./nginx-proxy
-    image: nginx-proxy
-    container_name: nginx-proxy
+  nginx:
+    build: ./nginx/
+    restart: always
     ports:
-      - "80:80"
-      - "443:443"
+      - 80:80
+      - 443:443
     volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-      - cert-volume:/etc/nginx/certs:rw
-      - /etc/nginx/vhost.d
-      - /usr/share/nginx/html
-  
-  letsencrypt-proxy:
-    image: jrcs/letsencrypt-nginx-proxy-companion
-    container_name: letsencrypt-proxy
-    volumes_from:
-      - nginx-proxy
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - cert-volume:/etc/nginx/certs:rw
+      - nginx_dehydrated:/etc/dehydrated/
+    depends_on:
+      - searx
+    links:
+      - searx
 
-  searx:
-    image: wonderfall/searx:latest
-    container_name: searx
-    environment:
-      - VIRTUAL_HOST=searx.cblog.ch
-      - LETSENCRYPT_HOST=searx.cblog.ch
-      - LETSENCRYPT_EMAIL=robin@cblog.ch
+searx:
+  image: wonderfall/searx:latest
+  restart: always
 
 volumes:
-    cert-volume:
+  nginx_dehydrated:
