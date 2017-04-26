@@ -11,7 +11,6 @@ if [ "$(ls -A /etc/dehydrated/)" == "domains.txt" ]; then
     dehydrated --cron   # register certificates
     echo "OK - please restart this container!"
 else
-		echo "Starting nginx..."
+	echo "Starting nginx..."
     nginx -g "daemon off;"
 fi
-
