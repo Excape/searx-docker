@@ -8,8 +8,14 @@ services:
       - 443:443
     volumes:
       - nginx_dehydrated:/etc/dehydrated/
-    depends_on:
-      - searx
+    links:
+      - filtron
+
+  filtron:
+    build: ./filtron/
+    restart: always
+    environment:
+      APP_PORT: 8888
     links:
       - searx
 
