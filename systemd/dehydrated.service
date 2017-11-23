@@ -4,4 +4,6 @@ Requires=searx.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/docker-compose -f /var/searx-docker/docker-compose.yml exec nginx dehydrated --cron
+ExecStart=/usr/local/bin/docker-compose -f /var/searx-docker/docker-compose.yml exec -T nginx dehydrated --cron
+ExecStartPost=/usr/local/bin/docker-compose -f /var/searx-docker/docker-compose.yml restart nginx
+
