@@ -14,7 +14,7 @@ services:
       - searx
 
   searx:
-    image: wonderfall/searx:latest
+    build: searx/
     restart: always
 
 volumes:
